@@ -138,6 +138,15 @@ function babelTranspile(pathname, callback) {
 }
 
 gulp.task('default', ['html', 'js', 'css'], function(callback) {
-    callback();
-    console.log('\nPlaced optimized files in ' + chalk.magenta('dist/\n'));
+    // Load the forerunnerdb main file
+    fs.readFile('src/bower_modules/forerunnerdb/js/dist/fdb-all.min.js', function (err, fdbjs) {
+        // Load the compiled js for the whole app
+        fs.readFile('dist/scripts.js', function (err, scriptsjs) {
+            // Concatenate the two scripts and write back to script.js
+            fs.writeFile('dist/scripts.js', fdbjs + "\n" + scriptsjs, function (err) {
+                callback();
+                console.log('\nPlaced optimized files in ' + chalk.magenta('dist/\n'));
+            });
+        });
+    });
 });
