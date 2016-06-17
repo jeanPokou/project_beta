@@ -3,8 +3,6 @@ import 'bootstrap';
 import ko from 'knockout';
 import 'knockout-projections'
 import * as router from './router';
-import  'forerunner';
-
 
 // creating the Forerunner Data Base
 
